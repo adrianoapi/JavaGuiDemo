@@ -9,23 +9,21 @@ public class Dezenas {
 	 */
 	public static int[] gerarDezenas() {
 
-		Dezenas dez = new Dezenas();
-
 		int[] dezenas = new int[6];
 		Random random = new Random();
 
 		int i = 0;
 		int numero = 0;
 		while (i < dezenas.length) {
-			numero = random.nextInt(59) + 1;
-			if (dez.checaArray(dezenas, numero) == false) {
+			numero = random.nextInt(60) + 1;
+			if (checaArray(dezenas, numero) == false) {
 				dezenas[i] = numero;
 				++i;
 			}
 
 		}
 
-		return dez.ordenarArray(dezenas);
+		return ordenarArray(dezenas);
 	}
 
 	/**
@@ -38,9 +36,17 @@ public class Dezenas {
 
 		String numeros = new String();
 		for (int i = 0; i < data.length; i++) {
-			numeros += "," + data[i];
+			numeros += "," + menorDez(data[i]);
 		}
 		return numeros;
+	}
+
+	public String menorDez(int value) {
+		String x = new String();
+		if (value < 10) {
+			return "0" + value;
+		}
+		return "" + value;
 	}
 
 	/**
@@ -59,6 +65,12 @@ public class Dezenas {
 		return false;
 	}
 
+	/**
+	 * Médoto para ordenação do array
+	 * 
+	 * @param data
+	 * @return
+	 */
 	public static int[] ordenarArray(int[] data) {
 		int temp;
 		boolean check = false;
