@@ -7,9 +7,9 @@ public class Dezenas {
 	 * 
 	 * @return
 	 */
-	public static int[] gerarDezenas() {
+	public static int[] gerarDezenas(int x) {
 
-		int[] dezenas = new int[6];
+		int[] dezenas = new int[x];
 		Random random = new Random();
 
 		int i = 0;
@@ -35,14 +35,19 @@ public class Dezenas {
 	public String drawTable(int[] data) {
 
 		String numeros = new String();
+		String space = new String();
 		for (int i = 0; i < data.length; i++) {
-			numeros += "," + menorDez(data[i]);
+			if (i < 1) {
+				space = "";
+			} else {
+				space = " ";
+			}
+			numeros += space + menorDez(data[i]);
 		}
 		return numeros;
 	}
 
 	public String menorDez(int value) {
-		String x = new String();
 		if (value < 10) {
 			return "0" + value;
 		}

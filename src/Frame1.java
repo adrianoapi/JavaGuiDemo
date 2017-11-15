@@ -18,13 +18,14 @@ import java.awt.TextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
-
+import javax.swing.JComboBox;
 
 public class Frame1 {
 
-	private JFrame frame;
+	private JFrame frmGeradorDeDezenas;
 	private JLabel lblMessage;
-	
+	private JTextField textDezenas;
+	private JComboBox qtdDezenas;
 
 	/**
 	 * Launch the application.
@@ -34,7 +35,7 @@ public class Frame1 {
 			public void run() {
 				try {
 					Frame1 window = new Frame1();
-					window.frame.setVisible(true);
+					window.frmGeradorDeDezenas.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,35 +54,63 @@ public class Frame1 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
+
 		Dezenas dezenas = new Dezenas();
-		
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.getContentPane().setBackground(SystemColor.inactiveCaption);
-		frame.setBounds(100, 100, 450, 294);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		JButton btnNewButton = new JButton("Show Message");
+
+		frmGeradorDeDezenas = new JFrame();
+		frmGeradorDeDezenas.setType(Type.UTILITY);
+		frmGeradorDeDezenas.setTitle("Gerador de Dezenas");
+		frmGeradorDeDezenas.setResizable(false);
+		frmGeradorDeDezenas.getContentPane().setBackground(SystemColor.inactiveCaption);
+		frmGeradorDeDezenas.setBounds(100, 100, 450, 294);
+		frmGeradorDeDezenas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmGeradorDeDezenas.getContentPane().setLayout(null);
+
+		JButton btnNewButton = new JButton("Gerar Dezenas");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-//				JOptionPane.showMessageDialog(null, "Give me!");
-				lblMessage.setText("Give me! "+ dezenas.drawTable(dezenas.gerarDezenas())+ " ...");
+				
+				// converte uma string em interiro
+				String quatidadeDez = String.valueOf(qtdDezenas.getSelectedItem());
+				int qtdDez = Integer.parseUnsignedInt(quatidadeDez);
+				if (qtdDez < 6 || qtdDez== 0) {
+					qtdDez = 6;
+				}
+				// JOptionPane.showMessageDialog(null, "Give me!");
+				lblMessage.setText("Dezenas geradas abaixo: " + qtdDez);
+				textDezenas.setText(dezenas.drawTable(dezenas.gerarDezenas(qtdDez)));
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton.setBounds(246, 227, 127, 23);
-		frame.getContentPane().add(btnNewButton);
-		
+		btnNewButton.setBounds(284, 155, 124, 23);
+		frmGeradorDeDezenas.getContentPane().add(btnNewButton);
+
 		JLabel label = new JLabel("");
 		Image img = new ImageIcon(this.getClass().getResource("/fft.jpg")).getImage();
 		label.setIcon(new ImageIcon(img));
 		label.setBounds(0, 0, 114, 271);
-		frame.getContentPane().add(label);
-		
-		lblMessage = new JLabel("Message:");
+		frmGeradorDeDezenas.getContentPane().add(label);
+
+		lblMessage = new JLabel("Clique no botão para gerar as dezenas:");
 		lblMessage.setBounds(145, 99, 264, 14);
-		frame.getContentPane().add(lblMessage);
+		frmGeradorDeDezenas.getContentPane().add(lblMessage);
+
+		textDezenas = new JTextField();
+		textDezenas.setBackground(SystemColor.inactiveCaptionBorder);
+		textDezenas.setBounds(145, 124, 264, 20);
+		frmGeradorDeDezenas.getContentPane().add(textDezenas);
+		textDezenas.setColumns(10);
+
+		qtdDezenas = new JComboBox();
+		qtdDezenas.setBounds(236, 157, 38, 20);
+		qtdDezenas.addItem("6");
+		qtdDezenas.addItem("7");
+		qtdDezenas.addItem("8");
+		qtdDezenas.addItem("9");
+		frmGeradorDeDezenas.getContentPane().add(qtdDezenas);
+
+		JLabel lblQtdDeDezenas = new JLabel("Qtd. de Dezenas");
+		lblQtdDeDezenas.setBounds(145, 160, 81, 14);
+		frmGeradorDeDezenas.getContentPane().add(lblQtdDeDezenas);
 	}
 }
