@@ -67,7 +67,7 @@ public class Frame1 {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 //				JOptionPane.showMessageDialog(null, "Give me!");
-				lblMessage.setText("Give me! "+ dezenas.gerarDezenas()+ " ...");
+				lblMessage.setText("Give me! "+ dezenas.drawTable(dezenas.gerarDezenas())+ " ...");
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -81,7 +81,7 @@ public class Frame1 {
 		frame.getContentPane().add(label);
 		
 		lblMessage = new JLabel("Message:");
-		lblMessage.setBounds(199, 75, 134, 14);
+		lblMessage.setBounds(158, 75, 264, 14);
 		frame.getContentPane().add(lblMessage);
 	}
 }
