@@ -81,7 +81,7 @@ public class Frame1 {
 		frame.getContentPane().add(label);
 		
 		lblMessage = new JLabel("Message:");
-		lblMessage.setBounds(158, 75, 264, 14);
+		lblMessage.setBounds(145, 99, 264, 14);
 		frame.getContentPane().add(lblMessage);
 	}
 }

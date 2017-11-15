@@ -17,7 +17,7 @@ public class Dezenas {
 		int i = 0;
 		int numero = 0;
 		while (i < dezenas.length) {
-			numero = random.nextInt(10);
+			numero = random.nextInt(59) + 1;
 			if (dez.checaArray(dezenas, numero) == false) {
 				dezenas[i] = numero;
 				++i;
@@ -43,6 +43,13 @@ public class Dezenas {
 		return numeros;
 	}
 
+	/**
+	 * Verifica se a dezena já existe no array
+	 * 
+	 * @param data
+	 * @param value
+	 * @return
+	 */
 	public static boolean checaArray(int[] data, int value) {
 		for (int i = 0; i < data.length; i++) {
 			if (data[i] == value) {
