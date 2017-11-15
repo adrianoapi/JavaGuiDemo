@@ -25,7 +25,7 @@ public class Dezenas {
 
 		}
 
-		return dezenas;
+		return dez.ordenarArray(dezenas);
 	}
 
 	/**
@@ -57,6 +57,26 @@ public class Dezenas {
 			}
 		}
 		return false;
+	}
+
+	public static int[] ordenarArray(int[] data) {
+		int temp;
+		boolean check = false;
+
+		while (check == false) {
+			check = true;
+			for (int i = 0; i < data.length - 1; i++) {
+				if (data[i] > data[i + 1]) {
+					temp = data[i + 1];
+					data[i + 1] = data[i];
+					data[i] = temp;
+					check = false;
+				}
+			}
+
+		}
+
+		return data;
 	}
 
 }
